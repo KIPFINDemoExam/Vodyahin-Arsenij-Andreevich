@@ -4,11 +4,76 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DriveMyself.Pages"
+      xmlns:model="clr-namespace:DriveMyself.Model"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="Список продуктов">
-
+      Title="Список продуктов"
+      Loaded="Page_Loaded">
+    <Page.Resources>
+        <model:manufList x:Key="manufList" />
+    </Page.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
         
+        <ListBox x:Name="productList" Grid.Row="1">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="LightGray" BorderThickness="1" Margin="5">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding MainImagePath}" HorizontalAlignment="Center" Margin="5" />
+                                <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Margin="5" />
+                                <TextBlock Text="{Binding Cost}" HorizontalAlignment="Center" Margin="5" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid x:Name="productFilterGrid" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Фильтр</TextBlock>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="5">Название</TextBlock>
+            <TextBox x:Name="productFilterTitle" TextChanged="ProductFilterName_TextChanged" Grid.Row="2" />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="5">Описание</TextBlock>
+            <TextBox x:Name="productFilterDescr" TextChanged="ProductFilterDescr_TextChanged" Grid.Row="4" />
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="6" Margin="5">Производитель</TextBlock>
+            <ComboBox x:Name="productFilterManuf" ItemsSource="{StaticResource manufList}" DisplayMemberPath="Name" SelectionChanged="ProductFilterManuf_SelectionChanged" Grid.Row="7" />
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="9">Сортировка</TextBlock>
+            <RadioButton Grid.Row="10" Margin="5" x:Name="Sort1">По возрастанию</RadioButton>
+            <RadioButton Grid.Row="11" Margin="5" x:Name="Sort2">По убыванию</RadioButton>
+        </Grid>
     </Grid>
 </Page>
