@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DriveMyself.Pages;
 
 namespace DriveMyself.Pages
 {
@@ -22,9 +23,11 @@ namespace DriveMyself.Pages
 	public partial class productListPage : Page
 	{
 		ObservableCollection<Product> productCollection { get; set; } = new ObservableCollection<Product>();
-		public productListPage()
+		MainWindow mainWindow { get; set; }
+		public productListPage(MainWindow _mainWindow)
 		{
 			InitializeComponent();
+			mainWindow = _mainWindow;
 		}
 
 		private void LoadProducts()
@@ -70,9 +73,26 @@ namespace DriveMyself.Pages
 
 		private void ProductFilterManuf_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			//if (Sort1.IsChecked == true)
-			//if (Sort2.IsChecked == true)
-			//else
+			LoadProducts();
+		}
+
+		private void BtCreate_Click(object sender, RoutedEventArgs e)
+		{
+			productPage productPage = new productPage(mainWindow);
+			mainWindow.mainFrame.Navigate(productPage);
+		}
+
+		private void BtEdit_Click(object sender, RoutedEventArgs e)
+		{
+			productPage productPage = new productPage(productList.SelectedItem as Product, mainWindow);
+			mainWindow.mainFrame.Navigate(productPage);
+		}
+
+		private void BtDelete_Click(object sender, RoutedEventArgs e)
+		{
+			MainWindow.entities.Products.Remove(productList.SelectedItem as Product);
+			MainWindow.entities.SaveChangesAsync();
+			LoadProducts();
 		}
 	}
 }

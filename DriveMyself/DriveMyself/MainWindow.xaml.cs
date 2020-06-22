@@ -30,7 +30,7 @@ namespace DriveMyself
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			productListPage listPage = new productListPage();
+			productListPage listPage = new productListPage(this);
 			mainFrame.Navigate(listPage);
 		}
 	}

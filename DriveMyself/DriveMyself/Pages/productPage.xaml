@@ -1,0 +1,63 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DriveMyself.Pages"
+      xmlns:DriveMyself="clr-namespace:DriveMyself" x:Class="DriveMyself.Pages.productPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Страница продукта">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="productViewSource" d:DesignSource="{d:DesignInstance {x:Type DriveMyself:Product}, CreateList=True}"/>
+    </Page.Resources>
+
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Name="productGrid" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Text="Стоимость"/>
+            <TextBox x:Name="costTextBox" VerticalAlignment="Center" Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Stretch" Grid.Column="1"/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Text="Описание"/>
+            <TextBox x:Name="descriptionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="100" TextWrapping="Wrap" Grid.Column="1"/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Text="Активный"/>
+            <CheckBox x:Name="isActiveCheckBox" VerticalAlignment="Center" Grid.Row="3" Margin="3" IsChecked="{Binding IsActive, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Grid.Column="1" Content=""/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Text="Название"/>
+            <TextBox x:Name="titleTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Title, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" Grid.Column="1"/>
+        </Grid>
+
+        <Image Source="{Binding MainImagePath}" Grid.Column="1" Margin="10 10 10 50" />
+        <Grid Height="50" VerticalAlignment="Bottom" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btImgBrowse" Height="30" Margin="5" Content="Обзор" Padding="10 5 10 5" Click="BtImgBrowse_Click" />
+            <Button Grid.Column="1" Name="btImgDelete" Height="30" Margin="5" Content="Удалить" Padding="10 5 10 5" Click="BtImgDelete_Click" />
+
+        </Grid>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+            <Button Name="btSave" Height="30" Margin="5" Content="Сохранить" Padding="10 5 10 5" Click="BtSave_Click" />
+            <Button Name="btDelete" Height="30" Margin="5" Content="Удалить" Padding="10 5 10 5" Click="BtDelete_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

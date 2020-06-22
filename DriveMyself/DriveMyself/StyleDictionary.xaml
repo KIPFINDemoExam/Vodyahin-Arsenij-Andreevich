@@ -9,4 +9,28 @@
         <Setter Property="Foreground"
                 Value="DarkGray" />
     </Style>
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="FontFamily"
+                Value="Tw Cen MT" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="Foreground"
+                Value="DarkGray" />
+    </Style>
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="FontFamily"
+                Value="Tw Cen MT" />
+        <Setter Property="FontSize"
+                Value="14" />
+    </Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FontFamily"
+                Value="Tw Cen MT" />
+        <Setter Property="BorderBrush"
+                Value="LightGray" />
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="14" />
+    </Style>
 </ResourceDictionary>

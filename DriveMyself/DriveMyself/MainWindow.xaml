@@ -8,6 +8,16 @@
         Title="Доеду сам" Height="720" Width="1280"
         Loaded="Window_Loaded">
     <Grid>
-        <Frame Name="mainFrame" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="#FFFF9C1A">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock FontSize="32" Margin="5"  VerticalAlignment="Center" Foreground="White">ДОЕДУ САМ</TextBlock>
+                <Image Source="Pages/Images/service_logo.png" HorizontalAlignment="Right" Margin="5" />
+            </StackPanel>
+        </Border>
+        <Frame Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
